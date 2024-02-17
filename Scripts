@@ -1,0 +1,10 @@
+FQ-CODEL
+
+SCRIPT HERE:
+===============================================================================
+/queue type
+add fq-codel-limit=1000 fq-codel-quantum=300 fq-codel-target=1ms kind=fq-codel name=fq-codel
+/queue tree
+add bucket-size=0.01 max-limit=30M name=download packet-mark=no-mark parent=bridge-lan queue=fq-codel
+add bucket-size=0.01 max-limit=30M name=upload packet-mark=no-mark parent=ether1-ISP queue=fq-codel
+===============================================================================
